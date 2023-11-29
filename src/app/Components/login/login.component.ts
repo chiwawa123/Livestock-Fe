@@ -31,7 +31,7 @@ export class LoginComponent {
         this.data = res;
         localStorage.setItem('user', JSON.stringify(this.data));
 this.tostr.success('success',"login successful")
-this.router.navigate(["dashboard"])
+this.router.navigate(["main/dashboard"])
 
       },error=>{
 this.tostr.error("bad creds","incorect credentials ")
@@ -39,4 +39,6 @@ this.tostr.error("bad creds","incorect credentials ")
 
     );
   }
+
+  
 }

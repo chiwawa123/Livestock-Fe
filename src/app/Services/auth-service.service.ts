@@ -8,7 +8,13 @@ import { ServerDetails } from '../server-details';
   providedIn: 'root'
 })
 export class AuthServiceService {
+  private iss = {
+    login: 'https://localhost:7012/api/Auth/login',
+    signup: 'https://localhost:7012/api/Auth/Register',
+  };
+
   private isLoggedIn= new BehaviorSubject<boolean>(false);
+
   toggleLogin(state:boolean):void{
     this.isLoggedIn.next(state);
   }
@@ -17,6 +23,8 @@ export class AuthServiceService {
     if(!localData){
       this.isLoggedIn.next(false);
       console.log("user not logged In");
+      this.route.navigate(["login"]);
+      
    
     }else{
       this.isLoggedIn.next(true);
@@ -54,5 +62,18 @@ export class AuthServiceService {
   }
   loggedIn(){
     return this.status();
+  }
+  get() {
+    return localStorage.getItem('user');
+  }
+  isValid() {
+    const token = this.get();
+    if (token) {
+      const payload = this.payload(token);
+      if (payload) {
+        return Object.values(this.iss).indexOf(payload.iss) > -1 ? true : false;
+      }
+    }
+    return false;
   }
 }
