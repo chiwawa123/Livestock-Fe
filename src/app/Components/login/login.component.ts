@@ -13,7 +13,7 @@ export class LoginComponent {
   data: any;
 
   public form = {
-    username: null,
+    email: null,
     password: null,
   };
   public error: any = null;
