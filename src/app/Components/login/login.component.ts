@@ -20,25 +20,25 @@ export class LoginComponent {
 
   ngOnInit(): void {}
 
-  constructor(private auth: AuthServiceService, private router: Router, private tostr:ToastrService) {}
+  constructor(
+    private auth: AuthServiceService,
+    private router: Router,
+    private tostr: ToastrService
+  ) {}
 
   onSubmit() {
-    console.log(this.form)
+    console.log(this.form);
 
     this.auth.login(this.form).subscribe(
-
       (res) => {
         this.data = res;
         localStorage.setItem('user', JSON.stringify(this.data));
-this.tostr.success('success',"login successful")
-this.router.navigate(["main/dashboard"])
-
-      },error=>{
-this.tostr.error("bad creds","incorect credentials ")
+        this.tostr.success('success', 'login successful');
+        this.router.navigate(['main/dashboard']);
+      },
+      (error) => {
+        this.tostr.error('bad creds', 'incorect credentials ');
       }
-
     );
   }
-
-  
 }
