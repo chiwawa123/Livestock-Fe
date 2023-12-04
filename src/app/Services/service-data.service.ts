@@ -12,7 +12,7 @@ export class ServiceDataService {
   }
 
   getFarms(){
-    return this.http.get(ServerDetails.serverIP + '/Farm');
+    return this.http.get(ServerDetails.serverIP + 'Farm');
   }
 
   addFarm(data:any){

@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { ToastrService } from 'ngx-toastr';
 import { ServiceDataService } from 'src/app/Services/service-data.service';
 import { Farm } from 'src/app/farm';
 
@@ -10,12 +11,16 @@ import { Farm } from 'src/app/farm';
 export class FarmComponent {
   farms: any;
   data: any;
-getFarmer:any;
+  getFarmer: any;
+
+
   farm = new Farm();
 
-  constructor(private serviceData: ServiceDataService) {}
+  constructor(private serviceData: ServiceDataService,  private toastr: ToastrService) {}
   ngOnInit() {
+
     this.getFarms();
+    this.Farmer();
   }
   getFarms() {
     return this.serviceData.getFarms().subscribe((res) => {
@@ -23,10 +28,28 @@ getFarmer:any;
     });
   }
   addFarmData() {
-
-    this.farm.farmer_id = this.getFarmer.farmer_id;
+    this.farm.farmer_id = this.getFarmer.farmer.farmer_id;
     return this.serviceData.addFarm(this.farm).subscribe((res) => {
       this.data = res;
+      if (this.data.status == 200) {
+        this.toastr.success(
+          JSON.stringify(this.data.message),
+          JSON.stringify(this.data.data),
+          {
+            timeOut: 6000,
+            progressBar: true,
+          }
+        );
+      } else {
+        this.toastr.error(
+          JSON.stringify(this.data.message),
+          JSON.stringify(this.data.data),
+          {
+            timeOut: 6000,
+            progressBar: true,
+          }
+        );
+      }
     });
   }
 
@@ -49,9 +72,10 @@ getFarmer:any;
   }
 
   get Farmer() {
-    const farmer: any = localStorage.getItem('farmer');
+    const farmer: any = localStorage.getItem('user');
     this.getFarmer = JSON.parse(farmer);
- 
-    return this.getFarmer;
+    // console.log(this.getFarmer.farmer.farmer_id);
+
+    return this.getFarmer.farmer;
   }
 }

@@ -13,30 +13,37 @@
                     <form class="row g-3 needs-validation" novalidate="" #addFarmForm=ngForm (ngSubmit)="addFarmData()">
                       <div class="col-md-4">
                         <label class="form-label" for="validationCustom01">Farm name</label>
-                        <input class="form-control" id="validationCustom01" type="text" value="Mark" name="farm_name" [ngModel]="farm.farm_name" required="">
+                        <input class="form-control" id="validationCustom01" type="text" value="Mark" name="farm_name" [(ngModel)]="farm.farm_name" required="">
                    
                       </div>
                       <div class="col-md-4">
                         <label class="form-label" for="validationCustom02">District</label>
-                        <input class="form-control" id="validationCustom02" name="district"  [ngModel]="farm.district"  type="text" value="Otto" required="">
+                        <input class="form-control" id="validationCustom02" name="district"  [(ngModel)]="farm.district"  type="text" value="Otto" required="">
                
                       </div>
                       <div class="col-md-4">
                         <label class="form-label" for="validationCustomUsername">Province</label>
                         <div class="input-group has-validation"><span class="input-group-text" id="inputGroupPrepend"></span>
-                          <input class="form-control" id="validationCustomUsername" name="province"  [ngModel]="farm.province"  type="text" aria-describedby="inputGroupPrepend" required="">
+                          <input class="form-control" id="validationCustomUsername" name="province"  [(ngModel)]="farm.province"  type="text" aria-describedby="inputGroupPrepend" required="">
+                          <div class="invalid-feedback">Please choose a username.</div>
+                        </div>
+                      </div>
+                      <div class="col-md-4">
+                        <label class="form-label" for="validationCustomUsername">Country</label>
+                        <div class="input-group has-validation"><span class="input-group-text" id="inputGroupPrepend"></span>
+                          <input class="form-control" id="validationCustomUsername" name="country"  [(ngModel)]="farm.country"  type="text" aria-describedby="inputGroupPrepend" required="">
                           <div class="invalid-feedback">Please choose a username.</div>
                         </div>
                       </div>
                       
                       <div class="mb-3">
                         <label class="form-label" for="validationTextarea">Farm Description</label>
-                        <textarea class="form-control" name="farm_description" id="validationTextarea"  [ngModel]="farm.farm_description" placeholder="Required example textarea" required=""></textarea>
+                        <textarea class="form-control" name="farm_description" id="validationTextarea"  [(ngModel)]="farm.farm_description" placeholder="Required example textarea" required=""></textarea>
                         <div class="invalid-feedback">Please enter a message in the textarea.</div>
                       </div>
                       <div class="mb-3">
                         <label class="form-label" for="validationTextarea">Description</label>
-                        <textarea class="form-control " name="description" [ngModel]="farm.description" id="validationTextarea" placeholder="Required example textarea" required=""></textarea>
+                        <textarea class="form-control " name="description" [(ngModel)]="farm.description" id="validationTextarea" placeholder="Required example textarea" required=""></textarea>
                         <div class="invalid-feedback">Please enter a message in the textarea.</div>
                       </div>
                     
